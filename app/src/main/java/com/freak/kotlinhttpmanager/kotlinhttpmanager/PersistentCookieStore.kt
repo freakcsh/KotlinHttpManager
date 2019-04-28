@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.ArrayList
 import kotlin.experimental.and
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 /**
  * Created by Administrator on 2019/4/28.
  */
@@ -50,7 +51,7 @@ class PersistentCookieStore(context: Context) {
                     val decodedCookie = decodeCookie(encodedCookie)
                     if (decodedCookie != null) {
                         if (!cookies.containsKey(key)) {
-                            cookies.put(key, ConcurrentHashMap())
+                            cookies[key] = ConcurrentHashMap()
                         }
                         cookies[key]?.put(name, decodedCookie)
                     }
@@ -77,7 +78,7 @@ class PersistentCookieStore(context: Context) {
     fun add(key: String, cookie: Cookie) {
         val name = getCookieToken(cookie)
         if (!cookies.containsKey(key)) {
-            cookies.put(key, ConcurrentHashMap())
+            cookies[key] = ConcurrentHashMap()
         }
         cookies[key]?.put(name, cookie)
         val prefsWriter = cookiePrefs.edit()
@@ -103,18 +104,19 @@ class PersistentCookieStore(context: Context) {
         return ret
     }
 
+
+    /**
+     * cookie的存储
+     * key是url.host()
+     *
+     * @param url    HttpUrl
+     * @param cookie Cookie
+     */
     @SuppressLint("CommitPrefEdits")
-            /**
-             * cookie的存储
-             * key是url.host()
-             *
-             * @param url    HttpUrl
-             * @param cookie Cookie
-             */
     fun add(url: HttpUrl, cookie: Cookie) {
         val name = getCookieToken(cookie)
         if (!cookies.containsKey(url.host())) {
-            cookies.put(url.host(), ConcurrentHashMap())
+            cookies[url.host()] = ConcurrentHashMap()
         }
         cookies[url.host()]?.put(name, cookie)
         //将cookies持久化到本地
@@ -187,7 +189,7 @@ class PersistentCookieStore(context: Context) {
      */
     fun remove(url: HttpUrl, cookie: Cookie): Boolean {
         val name = getCookieToken(cookie)
-        if (cookies.containsKey(url.host()) && cookies[url.host()]?.containsKey(name)!!) {
+        return if (cookies.containsKey(url.host()) && cookies[url.host()]?.containsKey(name)!!) {
             cookies[url.host()]?.remove(name)
             val prefsWriter = cookiePrefs.edit()
             if (cookiePrefs.contains(name)) {
@@ -195,9 +197,9 @@ class PersistentCookieStore(context: Context) {
             }
             prefsWriter.putString(url.host(), TextUtils.join(",", cookies[url.host()]?.keys))
             prefsWriter.apply()
-            return true
+            true
         } else {
-            return false
+            false
         }
     }
 
