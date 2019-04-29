@@ -1,14 +1,16 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager
 
 import android.annotation.SuppressLint
+import android.view.View
+import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Suppress("UNREACHABLE_CODE")
-abstract class RxPresenter<T : RxBaseView> : BasePresenter<T> {
-    protected var mView: T? = null
+abstract class RxPresenter<T : RxBaseView<T>>(protected var mView: T? = null) : BasePresenter<T> {
+
     /**
      * 解除订阅
      */
@@ -38,12 +40,10 @@ abstract class RxPresenter<T : RxBaseView> : BasePresenter<T> {
      * @param view
      */
     override fun attachView(view: T) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         this.mView = view
     }
 
     override fun detachView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         this.mView = null
     }
 }

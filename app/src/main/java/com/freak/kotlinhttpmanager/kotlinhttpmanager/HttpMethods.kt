@@ -8,14 +8,13 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import io.reactivex.disposables.CompositeDisposable
 import okhttp3.CookieJar
 import okhttp3.Interceptor
-
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class HttpMethods {
@@ -125,7 +124,6 @@ class HttpMethods {
                 }
                 return mCompositeDisposable!!
             }
-
     }
 
     class Builder {

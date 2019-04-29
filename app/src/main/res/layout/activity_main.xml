@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.freak.kotlinhttpmanager.MainActivity">
 
   <Button
@@ -11,5 +12,28 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="网络请求"/>
+
+  <Button
+      android:id="@+id/btn_rx"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="RxView"/>
+  <Button
+      android:id="@+id/btn_ok_http_down"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Okhttp下载" />
+  <Button
+      android:id="@+id/btn_system_down_onclick"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="系统自带下载器下载" />
+  <Button
+      android:id="@+id/btn_aop"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="aop点击"
+      />
+
 
 </LinearLayout>

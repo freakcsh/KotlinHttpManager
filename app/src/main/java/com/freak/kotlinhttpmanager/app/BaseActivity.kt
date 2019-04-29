@@ -1,27 +1,29 @@
+@file:Suppress("UNREACHABLE_CODE", "SENSELESS_COMPARISON", "UNNECESSARY_NOT_NULL_ASSERTION")
+
 package com.freak.kotlinhttpmanager.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.os.*
+import android.os.Build
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.BasePresenter
-import com.freak.kotlinhttpmanager.kotlinhttpmanager.RxBaseView
 
-abstract class BaseActivity<T : BasePresenter<RxBaseView>> : AppCompatActivity(), RxBaseView {
-    protected var mPresenter: T? = null
-    protected var mActivity: Activity? = null
+abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity() {
+    lateinit var mPresenter: T
+    private var mActivity: Activity? = null
     protected abstract fun initEventAndData()
 
     protected abstract fun createPresenter(): T
 
-    protected abstract fun getlayout(): Int
+    protected abstract fun getLayout(): Int
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+//        super.onCreate(savedInstanceState)
         /**
          * 创建presenter对象
          */
@@ -30,16 +32,12 @@ abstract class BaseActivity<T : BasePresenter<RxBaseView>> : AppCompatActivity()
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         super.onCreate(savedInstanceState)
-        setContentView(getlayout())
+        setContentView(getLayout())
 
         mActivity = this
         //活动控制器
         App.instance!!.addActivity(this)
 
-
-        if (mPresenter != null) {
-            mPresenter!!.attachView(this)
-        }
 
         initEventAndData()
     }

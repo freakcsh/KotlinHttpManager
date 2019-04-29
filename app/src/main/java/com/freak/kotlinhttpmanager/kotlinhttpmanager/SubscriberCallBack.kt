@@ -14,7 +14,6 @@ import java.util.concurrent.TimeoutException
 class SubscriberCallBack<T>(private val apiCallback: ApiCallback<T>) : Observer<T> {
 
     override fun onSubscribe(d: Disposable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /**
@@ -24,7 +23,6 @@ class SubscriberCallBack<T>(private val apiCallback: ApiCallback<T>) : Observer<
      */
     @Suppress("UNREACHABLE_CODE")
     override fun onError(e: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         try {
             val msg: String
             if (e is SocketTimeoutException) {
@@ -50,7 +48,6 @@ class SubscriberCallBack<T>(private val apiCallback: ApiCallback<T>) : Observer<
     }
 
     override fun onComplete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 
     }
 
@@ -60,7 +57,6 @@ class SubscriberCallBack<T>(private val apiCallback: ApiCallback<T>) : Observer<
      * @param o
      */
     override fun onNext(t: T) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         apiCallback.onSuccess(t)
     }
 }

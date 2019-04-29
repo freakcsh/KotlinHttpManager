@@ -1,9 +1,11 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager
 
+import android.view.View
+
 /**
  * Created by Administrator on 2019/4/28.
  */
-interface BasePresenter<T : RxBaseView> {
+interface BasePresenter<in T : RxBaseView<*>> {
     /**
      * 绑定view
      *
