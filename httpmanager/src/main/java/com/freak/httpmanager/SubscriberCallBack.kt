@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.JsonSyntaxException
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import java.lang.Exception
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.util.concurrent.TimeoutException

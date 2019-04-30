@@ -10,6 +10,7 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.rxview.Preconditions.Compan
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 

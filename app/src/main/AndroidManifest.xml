@@ -32,6 +32,7 @@
         <activity android:name=".down.DownActivity"/>
         <activity android:name=".down.DownTaskListActivity"/>
         <activity android:name=".down.SystemDownloadActivity"/>
+        <activity android:name=".aopactivity.AopActivity"/>
     </application>
 
 </manifest>

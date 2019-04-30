@@ -1,8 +1,6 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager
 
 import android.annotation.SuppressLint
-import android.view.View
-import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers

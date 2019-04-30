@@ -10,7 +10,7 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.ApiCallback
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.HttpMethods
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.RxPresenter
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.SubscriberCallBack
-import com.orhanobut.logger.Logger
+import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 
 class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.View>(mainView), MainContract.Presenter {
    private val apiServer = HttpMethods.instance.create(ApiServer::class.java)
@@ -21,12 +21,12 @@ class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.Vi
         addSubscription(observable, SubscriberCallBack(object : ApiCallback<HttpResult<Any>> {
             override fun onSuccess(model: HttpResult<Any>) {
                 mView!!.onSuccess(model)
-                Logger.d(model)
+                LogUtil.d(model.toString())
             }
 
             override fun onFailure(msg: String) {
                 mView!!.onError(msg)
-                Logger.d(msg)
+                LogUtil.d(msg)
             }
         }))
     }

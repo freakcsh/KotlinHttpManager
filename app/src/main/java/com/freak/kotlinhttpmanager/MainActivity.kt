@@ -4,7 +4,7 @@ package com.freak.kotlinhttpmanager
 
 import android.content.Intent
 import android.view.View
-import com.freak.kotlinhttpmanager.aop.AopOnclick
+import com.freak.kotlinhttpmanager.aopactivity.AopActivity
 import com.freak.kotlinhttpmanager.app.BaseActivity
 import com.freak.kotlinhttpmanager.down.DownActivity
 import com.freak.kotlinhttpmanager.down.SystemDownloadActivity
@@ -12,7 +12,6 @@ import com.freak.kotlinhttpmanager.entity.HttpResult
 import com.freak.kotlinhttpmanager.entity.LoginEntity
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import com.freak.kotlinhttpmanager.rxview.RxViewActivity
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
@@ -44,7 +43,7 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
 //        }
 //    }
 //
-    @AopOnclick(5000)
+
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.btn_http -> {
@@ -66,8 +65,8 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
                 startActivity(intent)
             }
             R.id.btn_aop -> {
-                LogUtil.e("AOP点击")
-            }
+                var intent = Intent(this@MainActivity, AopActivity::class.java)
+                startActivity(intent)            }
             else -> {
             }
         }
@@ -81,7 +80,7 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
     }
 
     override fun onSuccess(httpResult: HttpResult<Any>) {
-        Logger.d(httpResult)
+        LogUtil.d(httpResult.toString())
     }
 
     override fun onError(msg: String) {
@@ -100,13 +99,18 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
 //            mPresenter.doLogin1("freak", "123456")
 //
 //        }
-//        btn_rx.onClick {
-//            var intent = Intent(this@MainActivity, RxViewActivity::class.java)
-//            startActivity(intent)
+//        btn_aop.onClick {
+////            var intent = Intent(this@MainActivity, RxViewActivity::class.java)
+////            startActivity(intent)
+//            aop()
+//            sing()
+//        }
+//        btn_aop.setOnClickListener {
+//            aop()
 //        }
 
-
     }
+
 
     override fun createPresenter(): MainPresenter<MainContract.View> {
         return MainPresenter(this)
@@ -115,6 +119,10 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
     override fun getLayout(): Int {
         return R.layout.activity_main
     }
+
+
+
+
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
