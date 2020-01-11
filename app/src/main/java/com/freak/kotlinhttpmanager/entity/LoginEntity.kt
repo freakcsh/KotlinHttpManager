@@ -222,7 +222,7 @@ class LoginEntity {
     }
 
     override fun toString(): String {
-        return "LoginEntity{" +
+        return "LoginModel{" +
                 "loginType=" + loginType +
                 ", code=" + code +
                 ", msg='" + msg + '\''.toString() +

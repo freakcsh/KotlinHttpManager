@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KotlinHttpManager.iml" filepath="$PROJECT_DIR$/KotlinHttpManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/KotlinHttpManager-app.iml" filepath="$PROJECT_DIR$/app/KotlinHttpManager-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/httpmanager/KotlinHttpManager-httpmanager.iml" filepath="$PROJECT_DIR$/httpmanager/KotlinHttpManager-httpmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/clone-KotlinHttpManager.iml" filepath="$PROJECT_DIR$/clone-KotlinHttpManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/httpmanager/httpmanager.iml" filepath="$PROJECT_DIR$/httpmanager/httpmanager.iml" />
     </modules>
   </component>

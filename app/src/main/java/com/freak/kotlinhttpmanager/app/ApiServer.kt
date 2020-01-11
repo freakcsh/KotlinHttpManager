@@ -1,6 +1,10 @@
 package com.freak.kotlinhttpmanager.app
 
-import com.freak.kotlinhttpmanager.entity.*
+import com.freak.kotlinhttpmanager.LoginModel
+import com.freak.kotlinhttpmanager.entity.BaseBean
+import com.freak.kotlinhttpmanager.entity.HttpResult
+import com.freak.kotlinhttpmanager.entity.LoginBean
+import com.freak.kotlinhttpmanager.entity.LoginStatusEntity
 import com.google.gson.JsonObject
 import io.reactivex.Observable
 import okhttp3.MultipartBody
@@ -48,7 +52,7 @@ interface ApiServer {
     @POST("login/cellphone")
     fun login(@Query("phone") phone: String,
               @Query("password") password: String
-    ): Observable<LoginEntity>
+    ): Observable<LoginModel>
 
     @POST("login/status")
     fun loadLoginStatus(): Observable<LoginStatusEntity>
@@ -72,4 +76,13 @@ interface ApiServer {
     @POST("uploading1")
     fun uploadingUserPhoto(@Part body: MultipartBody.Part): Observable<HttpResult<Any>>
 
+    /**
+     * 登录
+     *
+     * @param body 默认为全部，0未支付 1处理中 2待收货 3待取货 4已完成
+     * @return
+     */
+    @Headers("Content-Type:application/json")
+    @POST("api/staff/v1/staff/login")
+    fun login11(@Body body: RequestBody): Observable<HttpResult<LoginModel>>
 }

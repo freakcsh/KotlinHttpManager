@@ -1,6 +1,5 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager
 
-import android.annotation.SuppressLint
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,7 +24,6 @@ abstract class RxPresenter<T : RxBaseView<T>>(protected var mView: T? = null) : 
      * @param observer
      * @param <T>
      */
-    @SuppressLint("CheckResult")
     fun <T> addSubscription(observable: Observable<T>, observer: Observer<T>) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

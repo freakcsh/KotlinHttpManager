@@ -3,8 +3,8 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager.rxview
 
 import android.annotation.SuppressLint
-import android.support.annotation.CheckResult
-import android.support.v4.util.Preconditions.checkNotNull
+import androidx.annotation.CheckResult
+import androidx.core.util.Preconditions.checkNotNull
 import android.view.View
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.rxview.Preconditions.Companion.checkUiThread
 import io.reactivex.Observable

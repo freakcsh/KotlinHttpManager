@@ -2,7 +2,7 @@ package com.freak.kotlinhttpmanager.aopactivity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.freak.kotlinhttpmanager.R
 import com.freak.kotlinhttpmanager.aop.AopOnclick

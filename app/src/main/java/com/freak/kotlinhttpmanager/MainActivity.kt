@@ -50,7 +50,8 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
                 LogUtil.e("点击了")
                 toast("网络请求")
 //            btn_http.text = test("abfjabjkjk")
-                mPresenter.doLogin1("freak", "123456")
+//                mPresenter.doLogin1("freak", "123456")
+                mPresenter.login11("123456", "123456", "1")
             }
             R.id.btn_rx -> {
                 var intent = Intent(this@MainActivity, RxViewActivity::class.java)

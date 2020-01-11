@@ -3,18 +3,17 @@
 package com.freak.kotlinhttpmanager.app
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.BasePresenter
 
 abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity() {
     lateinit var mPresenter: T
-    private var mActivity: Activity? = null
+    private var mActivity: AppCompatActivity? = null
     protected abstract fun initEventAndData()
 
     protected abstract fun createPresenter(): T

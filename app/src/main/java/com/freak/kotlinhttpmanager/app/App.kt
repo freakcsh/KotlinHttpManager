@@ -1,26 +1,26 @@
 package com.freak.kotlinhttpmanager.app
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
+import androidx.appcompat.app.AppCompatActivity
 import com.freak.kotlinhttpmanager.interceptor.CommonParametersInterceptor
 import com.freak.kotlinhttpmanager.interceptor.CommonParametersInterceptorHead
 import com.freak.kotlinhttpmanager.interceptor.CookieJarImpl
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.HttpMethods
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogLevel
-import java.util.HashSet
+import java.util.*
 
 @SuppressLint("Registered")
 class App : Application() {
-    private var allActivities: MutableSet<Activity>? = null
+    private var allActivities: MutableSet<AppCompatActivity>? = null
     //    public static BaseActivity baseActivity;
 
 
-    fun getAllActivities(): Set<Activity>? {
+    fun getAllActivities(): Set<AppCompatActivity>? {
         return allActivities
     }
 
-    fun setAllActivities(allActivities: MutableSet<Activity>) {
+    fun setAllActivities(allActivities: MutableSet<AppCompatActivity>) {
         this.allActivities = allActivities
     }
 
@@ -45,14 +45,14 @@ class App : Application() {
                 .setInterceptors(CommonParametersInterceptor(), CommonParametersInterceptorHead())//设置多个拦截器
 
     }
-    fun addActivity(act: Activity) {
+    fun addActivity(act: AppCompatActivity) {
         if (allActivities == null) {
             allActivities = HashSet()
         }
         allActivities!!.add(act)
     }
 
-    fun removeActivity(act: Activity) {
+    fun removeActivity(act: AppCompatActivity) {
         if (allActivities != null) {
             allActivities!!.remove(act)
         }

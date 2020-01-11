@@ -7,9 +7,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.freak.kotlinhttpmanager.R
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.download.HttpDownInfo
@@ -24,7 +24,7 @@ class DownTaskListActivity : AppCompatActivity() {
     internal var jrtt = "http://gdown.baidu.com/data/wisegame/55dc62995fe9ba82/jinritoutiao_448.apk"
     internal var url = "http://pic2.zhimg.com/80/v2-4bd879d9876f90c1db0bd98ffdee17f0_hd.jpg"
     internal var url2 = "http://pic1.win4000.com/wallpaper/2017-10-11/59dde2bca944f.jpg"
-    private var recycle_view: RecyclerView? = null
+    private var recycle_view: androidx.recyclerview.widget.RecyclerView? = null
     private var mDownTaskAdapter: DownTaskAdapter? = null
     private var mHttpDownInfoList: MutableList<HttpDownInfo>? = null
     private var mHttpDownInfo: HttpDownInfo? = null
@@ -40,7 +40,7 @@ class DownTaskListActivity : AppCompatActivity() {
         mHttpDownMethods = HttpDownMethods.instance
         mHttpDownInfoList = ArrayList<HttpDownInfo>()
         recycle_view = findViewById(R.id.recycle_view)
-        recycle_view!!.setLayoutManager(LinearLayoutManager(this))
+        recycle_view!!.setLayoutManager(androidx.recyclerview.widget.LinearLayoutManager(this))
         mDownTaskAdapter = DownTaskAdapter(R.layout.item_download_task, mHttpDownInfoList, mHttpDownMethods!!)
         mDownTaskAdapter!!.bindToRecyclerView(recycle_view)
         mDownTaskAdapter!!.setEmptyView(R.layout.item_no_date, recycle_view)

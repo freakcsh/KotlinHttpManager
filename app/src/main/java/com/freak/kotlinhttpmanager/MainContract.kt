@@ -29,5 +29,7 @@ interface MainContract {
         fun uploading2(path: String)
 
         fun doLogin3(userName: String, pwd: String)
+
+        fun login11(account: String, pwd: String, app_type: String)
     }
 }
