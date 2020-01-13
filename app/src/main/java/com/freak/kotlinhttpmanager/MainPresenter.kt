@@ -11,6 +11,7 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.HttpMethods
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.RxPresenter
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.SubscriberCallBack
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
+import com.freak.kotlinhttpmanager.response.HttpResultFunc
 import com.freak.kotlinhttpmanager.util.RequestUtils
 
 class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.View>(mainView), MainContract.Presenter {
@@ -20,37 +21,19 @@ class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.Vi
                     .addParams("pwd", pwd)
                     .addParams("app_type", app_type)
                     .createRequestBody()
-            //.map { HttpResultFunc<LoginModel>() }
-            val observable = apiServer.login11(requestBody)
-//                    .map { HttpResult<LoginModel>() }
+            val observable = apiServer.login11(requestBody).map(HttpResultFunc())
 
-        addSubscription(observable,SubscriberCallBack(object :ApiCallback<HttpResult<LoginModel>>{
-            override fun onSuccess(model: HttpResult<LoginModel>) {
+        addSubscription(observable,SubscriberCallBack(object :ApiCallback<LoginModel>{
+            override fun onSuccess(model:LoginModel) {
                 LogUtil.e(model.toString())
             }
 
             override fun onFailure(msg: String) {
+                LogUtil.e(msg)
             }
 
         }))
 
-
-
-//            addSubscription(observable, SubscriberCallBack<LoginModel>(object : ApiCallback<LoginModel> {
-////                override fun onSuccess(model: HttpResult<LoginModel>) {
-////                    LogUtil.e(model.toString())//To change body of created functions use File | Settings | File Templates.
-////                }
-//
-//            override fun onSuccess(model: LoginModel) {
-//                LogUtil.e(model.toString())
-//            }
-//
-//
-//
-//                override fun onFailure(msg: String) {
-//                    LogUtil.e(msg)
-//                }
-//            }))
     }
 
     private val apiServer = HttpMethods.instance.create(ApiServer::class.java)

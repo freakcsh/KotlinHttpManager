@@ -3,6 +3,7 @@
 package com.freak.kotlinhttpmanager.kotlinhttpmanager
 
 import android.text.TextUtils
+import com.freak.httpmanager.ssl.HttpsUtils
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.HttpLogger
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import io.reactivex.disposables.CompositeDisposable
@@ -16,6 +17,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.SSLSocketFactory
+import javax.net.ssl.X509TrustManager
 
 class HttpMethods {
     private val retrofit: Retrofit
@@ -30,6 +33,22 @@ class HttpMethods {
         builder.readTimeout((if (instanceBuilder.getReadTimeOut() == 0) READ_TIMEOUT else instanceBuilder.getReadTimeOut()).toLong(), TimeUnit.SECONDS)
 
         builder.writeTimeout((if (instanceBuilder.getWriteTimeOut() == 0) WRITE_TIMEOUT else instanceBuilder.getWriteTimeOut()).toLong(), TimeUnit.SECONDS)
+        val sslParams = HttpsUtils.getSslSocketFactory(emptyArray(), null, null)
+        if (instanceBuilder.isUseDefaultSSLSocketFactory()) {
+            builder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+            builder.hostnameVerifier { hostname, session -> true }
+        } else {
+            if (instanceBuilder.getsSLSocketFactory() != null) {
+                if (instanceBuilder.getTrustManager() != null) {
+                    builder.sslSocketFactory(instanceBuilder.getsSLSocketFactory())
+                } else {
+                    builder.sslSocketFactory(instanceBuilder.getsSLSocketFactory(), instanceBuilder.getTrustManager())
+                }
+                builder.hostnameVerifier { hostname, session -> true }
+            }
+
+        }
+
         if (instanceBuilder.getsInterceptorList() != null && instanceBuilder.getsInterceptorList()!!.isNotEmpty()) {
             for (interceptor in instanceBuilder.getsInterceptorList()!!) {
                 builder.addInterceptor(interceptor)
@@ -141,6 +160,37 @@ class HttpMethods {
         private var logLevel: Int? = 0
         private var isOpenLog: Boolean? = false
         private var logName: String? = null
+        private var sSLSocketFactory: SSLSocketFactory? = null
+        private var trustManager: X509TrustManager? = null
+
+        private var useDefaultSSLSocketFactory: Boolean = false
+
+        fun isUseDefaultSSLSocketFactory(): Boolean {
+            return useDefaultSSLSocketFactory
+        }
+
+        fun setUseDefaultSSLSocketFactory(useDefaultSSLSocketFactory: Boolean): Builder {
+            this.useDefaultSSLSocketFactory = useDefaultSSLSocketFactory
+            return this
+        }
+
+        fun getsSLSocketFactory(): SSLSocketFactory? {
+            return sSLSocketFactory
+        }
+
+        fun setsSLSocketFactory(sSLSocketFactory: SSLSocketFactory): Builder {
+            this.sSLSocketFactory = sSLSocketFactory
+            return this
+        }
+
+        fun getTrustManager(): X509TrustManager? {
+            return trustManager
+        }
+
+        fun setTrustManager(trustManager: X509TrustManager): Builder {
+            this.trustManager = trustManager
+            return this
+        }
 
         fun isIsOpenLog(): Boolean? {
             return isOpenLog

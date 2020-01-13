@@ -13,7 +13,6 @@ import com.freak.kotlinhttpmanager.entity.LoginEntity
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import com.freak.kotlinhttpmanager.rxview.RxViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContract.View, View.OnClickListener {
 
@@ -48,7 +47,7 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
         when (v!!.id) {
             R.id.btn_http -> {
                 LogUtil.e("点击了")
-                toast("网络请求")
+//                toast("网络请求")
 //            btn_http.text = test("abfjabjkjk")
 //                mPresenter.doLogin1("freak", "123456")
                 mPresenter.login11("123456", "123456", "1")

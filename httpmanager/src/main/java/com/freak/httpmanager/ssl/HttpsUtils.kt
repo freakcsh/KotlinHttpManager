@@ -72,7 +72,7 @@ class HttpsUtils {
 
     companion object {
 
-        fun getSslSocketFactory(certificates: Array<InputStream>, bksFile: InputStream, password: String): SSLParams {
+        fun getSslSocketFactory(certificates: Array<InputStream>, bksFile: InputStream?, password: String?): SSLParams {
             val sslParams = SSLParams()
             try {
                 val trustManagers = prepareTrustManager(*certificates)
