@@ -12,7 +12,11 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 /**
  * Created by Administrator on 2019/4/29.
  */
-class RxViewActivity : BaseActivity<RxViewPresenter<RxViewContract.View>>(), RxViewContract.View, RxView.OnRxViewClickListener<View> {
+class RxViewActivity : BaseActivity<RxViewContract.View,RxViewContract.Presenter>(), RxViewContract.View, RxView.OnRxViewClickListener<View> {
+    override fun showToast(toast: String) {
+
+    }
+
     override fun onRxViewClick(view: View) {
         when (view.id) {
             R.id.rx_view -> {
@@ -37,8 +41,8 @@ class RxViewActivity : BaseActivity<RxViewPresenter<RxViewContract.View>>(), RxV
         RxView.instanced.setOnClickListeners(this, rx_view);
     }
 
-    override fun createPresenter(): RxViewPresenter<RxViewContract.View> {
-        return RxViewPresenter(this)
+    override fun createPresenter(): RxViewPresenter {
+        return RxViewPresenter()
     }
 
     override fun getLayout(): Int {

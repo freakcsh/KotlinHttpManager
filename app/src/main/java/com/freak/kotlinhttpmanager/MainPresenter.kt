@@ -14,7 +14,9 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import com.freak.kotlinhttpmanager.response.HttpResultFunc
 import com.freak.kotlinhttpmanager.util.RequestUtils
 
-class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.View>(mainView), MainContract.Presenter {
+class MainPresenter : RxPresenter<MainContract.View>(), MainContract.Presenter {
+
+
     override fun login11(account: String, pwd: String, app_type: String) {
             val requestBody = RequestUtils.newParams()
                     .addParams("account", account)
@@ -26,6 +28,7 @@ class MainPresenter<T>(mainView:MainContract.View) : RxPresenter<MainContract.Vi
         addSubscription(observable,SubscriberCallBack(object :ApiCallback<LoginModel>{
             override fun onSuccess(model:LoginModel) {
                 LogUtil.e(model.toString())
+                mView?.showToast(model.toString())
             }
 
             override fun onFailure(msg: String) {

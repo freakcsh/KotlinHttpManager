@@ -11,7 +11,7 @@ import com.orhanobut.logger.Logger
 /**
  * Created by Administrator on 2019/4/29.
  */
-class RxViewPresenter<T>(rxView: RxViewContract.View) : RxPresenter<RxViewContract.View>(rxView), RxViewContract.Presenter {
+class RxViewPresenter: RxPresenter<RxViewContract.View>(), RxViewContract.Presenter {
     private val apiServer = HttpMethods.instance.create(ApiServer::class.java)
     override fun doLogin1(userName: String, pwd: String) {
 

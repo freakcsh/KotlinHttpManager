@@ -1,14 +1,14 @@
 package com.freak.kotlinhttpmanager.rxview
 
+import com.freak.kotlinhttpmanager.app.BaseView
 import com.freak.kotlinhttpmanager.entity.HttpResult
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.BasePresenter
-import com.freak.kotlinhttpmanager.kotlinhttpmanager.RxBaseView
 
 /**
  * Created by Administrator on 2019/4/29.
  */
 interface RxViewContract {
-    interface View : RxBaseView<Any> {
+    interface View : BaseView {
         fun onSuccess(httpResult: HttpResult<Any>)
         fun onError(msg: String)
     }

@@ -14,7 +14,12 @@ import com.freak.kotlinhttpmanager.kotlinhttpmanager.log.LogUtil
 import com.freak.kotlinhttpmanager.rxview.RxViewActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContract.View, View.OnClickListener {
+class MainActivity : BaseActivity<MainContract.View, MainContract.Presenter>(), MainContract.View, View.OnClickListener {
+
+
+    override fun showToast(toast: String) {
+        LogUtil.e(toast)
+    }
 
     //    override fun onRxViewClick(view: View) {
 //        when (view.id) {
@@ -66,7 +71,8 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
             }
             R.id.btn_aop -> {
                 var intent = Intent(this@MainActivity, AopActivity::class.java)
-                startActivity(intent)            }
+                startActivity(intent)
+            }
             else -> {
             }
         }
@@ -112,16 +118,13 @@ class MainActivity : BaseActivity<MainPresenter<MainContract.View>>(), MainContr
     }
 
 
-    override fun createPresenter(): MainPresenter<MainContract.View> {
-        return MainPresenter(this)
+    override fun createPresenter(): MainPresenter {
+        return MainPresenter()
     }
 
     override fun getLayout(): Int {
         return R.layout.activity_main
     }
-
-
-
 
 
 //    override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,9 +5,8 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-@Suppress("UNREACHABLE_CODE")
-abstract class RxPresenter<T : RxBaseView<T>>(protected var mView: T? = null) : BasePresenter<T> {
-
+open class RxPresenter<T : RxBaseView> : BasePresenter<T> {
+    protected var mView: T? = null
     /**
      * 解除订阅
      */
@@ -24,7 +23,7 @@ abstract class RxPresenter<T : RxBaseView<T>>(protected var mView: T? = null) : 
      * @param observer
      * @param <T>
      */
-    fun <T> addSubscription(observable: Observable<T>, observer: Observer<T>) {
+    protected fun <T> addSubscription(observable: Observable<T>, observer: Observer<T>) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer)

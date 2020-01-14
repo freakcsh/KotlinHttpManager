@@ -3,20 +3,20 @@
 package com.freak.kotlinhttpmanager.app
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.BasePresenter
 
-abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity() {
-    lateinit var mPresenter: T
+abstract class BaseActivity<in V : BaseView, P : BasePresenter<V>> : AppCompatActivity() {
+    lateinit var mPresenter: P
     private var mActivity: AppCompatActivity? = null
     protected abstract fun initEventAndData()
 
-    protected abstract fun createPresenter(): T
+    protected abstract fun createPresenter(): P
 
     protected abstract fun getLayout(): Int
 
@@ -36,7 +36,7 @@ abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity() {
         mActivity = this
         //活动控制器
         App.instance!!.addActivity(this)
-
+        mPresenter!!.attachView(this as V)
 
         initEventAndData()
     }

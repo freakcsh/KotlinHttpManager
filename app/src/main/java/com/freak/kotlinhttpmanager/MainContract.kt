@@ -1,12 +1,12 @@
 package com.freak.kotlinhttpmanager
 
+import com.freak.kotlinhttpmanager.app.BaseView
 import com.freak.kotlinhttpmanager.entity.HttpResult
 import com.freak.kotlinhttpmanager.entity.LoginEntity
 import com.freak.kotlinhttpmanager.kotlinhttpmanager.BasePresenter
-import com.freak.kotlinhttpmanager.kotlinhttpmanager.RxBaseView
 
 interface MainContract {
-    interface View : RxBaseView<Any> {
+    interface View : BaseView {
         fun onSuccess(loginEntity: LoginEntity)
         fun onSuccess(httpResult: HttpResult<Any>)
         fun onSuccess(msg: String)
